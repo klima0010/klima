@@ -34,6 +34,7 @@
             justify-content: center;
             align-items: center;
             font-family: 'Inter', sans-serif;
+            /* Fundo gradiente original da página */
             background: linear-gradient(135deg, #1A1A2E 0%, #3B0066 30%, #6A006A 60%, #FF4500 100%);
             background-size: 400% 400%;
             animation: backgroundGradientAnimation 15s ease infinite;
@@ -97,7 +98,8 @@
     </style>
 </head>
 <body>
-    <div class="max-w-md w-full mx-auto p-6 bg-cardBg rounded-xl shadow-lg flex flex-col items-center space-y-6 md:p-8">
+    <div class="max-w-md w-full mx-auto p-6 rounded-xl shadow-lg flex flex-col items-center space-y-6 md:p-8"
+         style="background: linear-gradient(135deg, rgba(0, 11, 64, 0.3) 0%, rgba(26, 63, 248, 0.3) 30%, rgba(5, 32, 183, 0.3) 60%, rgba(2, 3, 108, 0.3) 100%);">
         <div>
             <img class="h-32 w-32 rounded-full object-cover shadow-md border-4 border-primary"
                  src="https://lh3.googleusercontent.com/pw/AP1GczMzFg3L0qblOyInQDE8HYc6OnkeRAsBazn6tKTvMj3PubjwUF3tjUbmhmtdVgN2VTounT3ukuAdxvBxY1jx53VO0kaZ5kuiWMMYY2qPFI7ugisbuazxj1b9mZsN3ksqgAtWziSqw-9BwLdMWAjmjwe7Gg=w869-h869-s-no-gm?authuser=0"
@@ -145,7 +147,7 @@
             </a>
 
             <a href="https://drive.google.com/file/d/1c8lqkvolYh9PmPiOAYvOzr743YTZPc0-/view?usp=sharing" target="_blank" rel="noopener noreferrer"
-               class="block w-full text-white px-4 rounded-lg text-center font-semibold h-8 flex justify-center items-center
+               class="block w-full text-white py-2 px-4 rounded-lg text-center font-semibold flex justify-center items-center
                       hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out transform-gpu"
                style="background: linear-gradient(to right, #FF6200, #1F8102, #FF6200); background-size: 200% 100%; animation: contentButtonWave 8s linear infinite;">
                 <span class="text-base">50 Versículos para guiar sua vida financeira</span>
@@ -177,8 +179,14 @@
                 Quando houver recomendações nos stories, você encontrará aqui.
             </p>
 
-            <div>
-
+            <div class="w-full space-y-4 mt-4">
+                <a href="https://drive.google.com/file/d/1ZziTMWf-RfdMby2HMW95n_Wn8jVLM4U4/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+                   class="block w-full text-white py-2 px-4 rounded-lg text-center font-semibold text-lg
+                          hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out
+                          flex justify-center items-center"
+                   style="background: linear-gradient(to right, #FF6200, #CCE618); background-size: 200% 100%; animation: buttonWave 8s linear infinite;">
+                    Planilha de controle financeira
+                </a>
             </div>
         </div>
     </div>
@@ -216,10 +224,6 @@
             }
         });
 
-        recommendationsButton.addEventListener('mouseenter', openDrawer);
-        recommendationsButton.addEventListener('mouseleave', (event) => {
-            closeDrawer();
-        });
     </script>
 </body>
 </html>
