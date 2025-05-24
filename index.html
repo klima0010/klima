@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Bio - Links Essenciais</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#FF6200',
+                        secondary: '#CC5000',
+                        backgroundDark: '#1A1A2E',
+                        textLight: '#E0E0E0',
+                        cardBg: '#000B40',
+                        youtubeText: '#000B40',
+                        linkedinBlue: '#0A66C2',
+                        newGreen: '#1F8102',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1A1A2E 0%, #3B0066 30%, #6A006A 60%, #FF4500 100%);
+            background-size: 400% 400%;
+            animation: backgroundGradientAnimation 15s ease infinite;
+            color: theme('colors.textLight');
+        }
+
+        @keyframes backgroundGradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes buttonWave {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 0%; }
+        }
+
+        @keyframes youtubeButtonWave {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 0%; }
+        }
+
+        @keyframes emojiPop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .animated-emoji {
+            display: inline-block;
+            animation: emojiPop 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .rotating-gear {
+            display: inline-block;
+            animation: rotate 9s linear infinite;
+        }
+
+        @keyframes textColorAnimation {
+            0%, 100% { color: #E0E0E0; }
+            50% { color: #C8D0D8; }
+        }
+
+        .animated-text-color {
+            animation: textColorAnimation 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes contentButtonWave {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
+        }
+
+        @keyframes recommendationsButtonWave {
+            from { background-position: 0% 0%; }
+            to { background-position: 100% 0%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-md w-full mx-auto p-6 bg-cardBg rounded-xl shadow-lg flex flex-col items-center space-y-6 md:p-8">
+        <div>
+            <img class="h-32 w-32 rounded-full object-cover shadow-md border-4 border-primary"
+                 src="https://lh3.googleusercontent.com/pw/AP1GczMzFg3L0qblOyInQDE8HYc6OnkeRAsBazn6tKTvMj3PubjwUF3tjUbmhmtdVgN2VTounT3ukuAdxvBxY1jx53VO0kaZ5kuiWMMYY2qPFI7ugisbuazxj1b9mZsN3ksqgAtWziSqw-9BwLdMWAjmjwe7Gg=w869-h869-s-no-gm?authuser=0"
+                 alt="Sua Foto de Perfil"
+                 onerror="this.onerror=null;this.src='https://placehold.co/128x128/FF6200/FFFFFF?text=Erro+Foto';">
+        </div>
+
+        <div class="text-center">
+            <h1 class="text-3xl font-bold text-textLight animated-text-color">Kaique Lima</h1>
+            <p class="text-gray-500 text-xs mt-1">Ou Klima...</p>
+            <p class="text-gray-400 mt-2 mb-2">Sou o Kaique Lima e</p>
+            <p class="text-gray-400 text-left">
+                • Estou com 29 anos <span class="animated-emoji">🎂</span>
+                <br>• Casado com a <a href="https://www.instagram.com/vlrpaixao/" target="_blank" rel="noopener noreferrer" class="underline text-primary hover:text-secondary">@vlrpaixao</a> <span class="animated-emoji">💍</span>
+                <br>• Cristão <span class="animated-emoji">✝️</span>
+                <br>• <a href="https://www.instagram.com/itubers/" target="_blank" rel="noopener noreferrer" class="underline text-primary hover:text-secondary">@ituber</a> <span class="animated-emoji">🧡</span>
+                <br>• Criando Conteúdos <span class="animated-emoji">✍️</span>
+                <br>• Posso te ajudar a fortalecer a fé em Deus <span class="animated-emoji">🙏</span> e a planejar as suas finanças <span class="animated-emoji">💰</span> <span class="rotating-gear">⚙️</span>
+            </p>
+            <p class="text-gray-400 mt-4 text-center animated-text-color">Encaixando e movendo as engrenagens da vida</p>
+        </div>
+
+        <div class="w-full space-y-4">
+            <a href="https://www.linkedin.com/in/kaiquenlima/" target="_blank" rel="noopener noreferrer"
+               class="block w-full text-white py-2 px-4 rounded-lg text-center font-semibold text-lg
+                      hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out
+                      flex justify-center items-center transform-gpu"
+               style="background: linear-gradient(to right, #FF6200, #0A66C2); background-size: 200% 100%; animation: buttonWave 8s linear infinite;">
+                <img src="https://www.edigitalagency.com.au/wp-content/uploads/LinkedIn-logo-blue-WEBP-large-size.webp"
+                     alt="LinkedIn Logo" class="h-8 w-auto">
+            </a>
+
+            <a href="https://www.youtube.com/@canaldoklima" target="_blank" rel="noopener noreferrer"
+               class="block w-full py-2 px-4 rounded-lg text-center font-semibold text-lg
+                      hover:-translate-y-1 hover:shadow-xl hover:opacity-90 transition-all duration-300 ease-in-out
+                      flex justify-between items-center transform-gpu"
+               style="background: linear-gradient(to right, white 0%, white 10%, #FF0000 50%, white 90%, white 100%); background-size: 200% 100%; animation: youtubeButtonWave 8s linear infinite;">
+                <img src="https://pngdownload.io/wp-content/uploads/2023/12/YouTube-Logo-PNG-Symbol-for-Video-Platform-Transparent-jpg.webp"
+                     alt="YouTube Play Button" class="h-8 w-auto">
+
+                <span style="color: #000B40;" class="text-lg">Canal do Klima</span>
+
+                <img src="https://lh3.googleusercontent.com/pw/AP1GczPhZ_M6RpgBjvzs-Zv4Epcu1BAk3lbgp8zHk3Aykwk6HGTC_2RT_AoRv4gQpEXX7EB9dnAbrYHPtHScd5tIEqcXnQT8a5C5pKBp7H9gfzKpmlAT6vMaI990N1KRmyeCST87r09YSmLQop_MW8LkqEvafw=w500-h500-s-no-gm?authuser=0"
+                     alt="YouTube Logo Right" class="h-8 w-auto">
+            </a>
+
+            <a href="https://drive.google.com/file/d/1c8lqkvolYh9PmPiOAYvOzr743YTZPc0-/view?usp=sharing" target="_blank" rel="noopener noreferrer"
+               class="block w-full text-white px-4 rounded-lg text-center font-semibold h-8 flex justify-center items-center
+                      hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out transform-gpu"
+               style="background: linear-gradient(to right, #FF6200, #1F8102, #FF6200); background-size: 200% 100%; animation: contentButtonWave 8s linear infinite;">
+                <span class="text-base">50 Versículos para guiar sua vida financeira</span>
+            </a>
+
+            <a href="#" id="recommendationsButton"
+               class="block w-full text-white py-2 px-4 rounded-lg text-center font-semibold text-lg
+                      hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out transform-gpu
+                      flex justify-center items-center"
+               style="background: linear-gradient(to right, #FF6200, #000000, #FF6200); background-size: 200% 100%; animation: recommendationsButtonWave 8s linear infinite;">
+                Minhas Recomendações
+            </a>
+
+        </div>
+
+        <div class="text-center text-gray-500 text-sm mt-6">
+            Feito com <span class="animated-emoji">🧡</span>
+        </div>
+    </div>
+
+    <div id="recommendationsDrawer" class="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 ease-in-out">
+        <div class="bg-cardBg p-6 rounded-lg shadow-xl w-11/12 max-w-md relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+            <button id="closeDrawer" class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl font-light">
+                ×
+            </button>
+            <h3 class="text-xl font-bold text-textLight mb-4 text-center">Recomendações</h3>
+
+            <p class="text-gray-400 text-base text-center mb-4 p-2 rounded-md bg-gray-700 bg-opacity-30">
+                Quando houver recomendações nos stories, você encontrará aqui.
+            </p>
+
+            <div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const recommendationsButton = document.getElementById('recommendationsButton');
+        const recommendationsDrawer = document.getElementById('recommendationsDrawer');
+        const drawerContent = recommendationsDrawer.querySelector('div');
+        const closeDrawerBtn = document.getElementById('closeDrawer');
+
+        function openDrawer() {
+            recommendationsDrawer.classList.remove('invisible', 'opacity-0');
+            recommendationsDrawer.classList.add('visible', 'opacity-100');
+            drawerContent.classList.remove('scale-95', 'opacity-0');
+            drawerContent.classList.add('scale-100', 'opacity-100');
+        }
+
+        function closeDrawer() {
+            recommendationsDrawer.classList.remove('visible', 'opacity-100');
+            recommendationsDrawer.classList.add('invisible', 'opacity-0');
+            drawerContent.classList.remove('scale-100', 'opacity-100');
+            drawerContent.classList.add('scale-95', 'opacity-0');
+        }
+
+        recommendationsButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            openDrawer();
+        });
+
+        closeDrawerBtn.addEventListener('click', closeDrawer);
+
+        recommendationsDrawer.addEventListener('click', (event) => {
+            if (event.target === recommendationsDrawer) {
+                closeDrawer();
+            }
+        });
+
+        recommendationsButton.addEventListener('mouseenter', openDrawer);
+        recommendationsButton.addEventListener('mouseleave', (event) => {
+            closeDrawer();
+        });
+    </script>
+</body>
+</html>
