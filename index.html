@@ -122,21 +122,66 @@
             background-clip: text;
             color: transparent;
         }
+
+        .profile-picture-wrapper {
+            position: relative;
+            width: 136px;
+            height: 136px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .profile-picture-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -4px;
+            right: -4px;
+            bottom: -4px;
+            background: linear-gradient(45deg, #FF6200, #3B0066, #FF6200);
+            background-size: 200% 200%;
+            border-radius: 50%;
+            z-index: 0;
+            animation: rotateGradient 3s linear infinite;
+        }
+
+        .profile-picture-wrapper img {
+            position: relative;
+            z-index: 1;
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #000B40;
+            padding: 4px;
+            box-sizing: border-box;
+            border: none;
+        }
+
+        @keyframes rotateGradient {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
     <div class="max-w-md w-full mx-auto p-6 rounded-xl shadow-lg flex flex-col items-center space-y-6 md:p-8"
          style="background: linear-gradient(135deg, rgba(0, 11, 64, 0.2) 0%, rgba(26, 63, 248, 0.2) 30%, rgba(5, 32, 183, 0.2) 60%, rgba(2, 3, 108, 0.2) 100%);">
         <div>
-            <img class="h-32 w-32 rounded-full object-cover shadow-md border-4 border-primary"
-                 src="https://lh3.googleusercontent.com/pw/AP1GczMzFg3L0qblOyInQDE8HYc6OnkeRAsBazn6tKTvMj3PubjwUF3tjUbmhmtdVgN2VTounT3ukuAdxvBxY1jx53VO0kaZ5kuiWMMYY2qPFI7ugisbuazxj1b9mZsN3ksqgAtWziSqw-9BwLdMWAjmjwe7Gg=w869-h869-s-no-gm?authuser=0"
-                 alt="Sua Foto de Perfil"
-                 onerror="this.onerror=null;this.src='https://placehold.co/128x128/FF6200/FFFFFF?text=Erro+Foto';">
+            <div class="profile-picture-wrapper">
+                <img class="h-32 w-32 rounded-full object-cover shadow-md"
+                     src="https://lh3.googleusercontent.com/pw/AP1GczMzFg3L0qblOyInQDE8HYc6OnkeRAsBazn6tKTvMj3PubjwUF3tjUbmhmtdVgN2VTounT3ukuAdxvBxY1jx53VO0kaZ5kuiWMMYY2qPFI7ugisbuazxj1b9mZsN3ksqgAtWziSqw-9BwLdMWAjmjwe7Gg=w869-h869-s-no-gm?authuser=0"
+                     alt="Sua Foto de Perfil"
+                     onerror="this.onerror=null;this.src='https://placehold.co/128x128/FF6200/FFFFFF?text=Erro+Foto';">
+            </div>
         </div>
 
         <div class="text-center">
             <h1 class="text-3xl font-bold text-textLight animated-text-color">Kaique Lima</h1>
-            <p class="text-gray-500 text-xs mt-1 mb-2">Ou Klima...</p>
+            <p class="text-gray-500 text-xs mt-1 mb-2">O Klima...</p>
             <p class="text-gray-400 text-left">
                 • 29 anos <span class="animated-emoji">🎂</span>
                 <br>• Casado com a <a href="https://www.instagram.com/vlrpaixao/" target="_blank" rel="noopener noreferrer" class="underline text-primary hover:text-secondary">@vlrpaixao</a> <span class="animated-emoji">💍</span>
