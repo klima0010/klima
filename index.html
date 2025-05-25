@@ -218,8 +218,7 @@
             </a>
 
             <a href="https://drive.google.com/file/d/1c8lqkvolYh9PmPiOAYvOzr743YTZPc0-/view?usp=sharing" target="_blank" rel="noopener noreferrer"
-               class="block w-full py-2 px-4 rounded-lg text-center font-semibold flex justify-center items-center
-                      hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out transform-gpu"
+               class="block w-full py-2 px-4 rounded-lg text-center font-semibold flex justify-center items-center"
                style="background: linear-gradient(to right, #FF6200, #1F8102, #FF6200); background-size: 200% 100%; animation: contentButtonWave 8s linear infinite;">
                 <span class="text-base" style="color: #000B40;">50 Versículos para guiar sua vida financeira</span>
             </a>
@@ -274,7 +273,7 @@
                           hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out
                           flex justify-center items-center"
                    style="background: linear-gradient(to right, #FF6200, #CCE618); background-size: 200% 100%; animation: buttonWave 8s linear infinite;">
-                    Planilha de controle financeira
+                    Planilha de controlo financeiro
                 </a>
 
                 <button id="generateTipButton"
@@ -298,6 +297,60 @@
         const financialTipModal = document.getElementById('financialTipModal');
         const tipContent = document.getElementById('tipContent');
         const closeTipModalBtn = document.getElementById('closeTipModal');
+
+        // Lista de dicas financeiras com emojis
+        const tips = [
+            "Anote todos os seus gastos do dia para ter controlo total do seu dinheiro. 📝",
+            "Planeie um orçamento mensal com base na sua renda e nos seus gastos fixos. 📊",
+            "Aprenda a diferenciar o que é necessidade e o que é apenas desejo. 🤔",
+            "Use aplicações ou planilhas para acompanhar a sua vida financeira. 📲",
+            "Estabeleça metas claras, como juntar dinheiro para algo importante. 🎯",
+            "Escolha um dia na semana para revisar as suas finanças com calma. 😌",
+            "Sempre confira a sua fatura do cartão antes de pagar. 💳",
+            "Pense duas vezes antes de comprar algo por impulso. 💡",
+            "Crie uma reserva de emergência para imprevistos. 💰 Guarda",
+            "Use o método 50-30-20 para dividir o seu dinheiro com equilíbrio. ⚖️",
+            "Guarde uma parte do que ganha antes de gastar. 🏦",
+            "Comece a investir o quanto antes, mesmo que com pouco. 🌱",
+            "Estude o básico sobre investimentos para tomar decisões melhores. 📚",
+            "Descubra se você é conservador, moderado ou arrojado nos investimentos. 🧐",
+            "Evite deixar todo o seu dinheiro parado na poupança. 🚫",
+            "Sempre que possível, reinvista os rendimentos dos seus investimentos. 📈",
+            "Entenda como os juros compostos fazem o seu dinheiro crescer. 🚀",
+            "Nunca aposte tudo em um único investimento. 🎲",
+            "Saiba a diferença entre investimentos de baixo e alto risco. ⚠️",
+            "Invista com foco no longo prazo e paciência. 🕰️",
+            "Evite pagar apenas o valor mínimo do cartão de crédito. ❌",
+            "Tenha no máximo dois cartões e saiba usá-los com controlo. ✅",
+            "Parcelar em muitas vezes pode te endividar sem perceber. 📉",
+            "Use o cartão como ferramenta, não como extensão do salário. 🛠️",
+            "Priorize quitar dívidas com juros altos, como cartão e cheque especial. 🛑",
+            "Negocie as suas dívidas com o banco ou empresas sempre que necessário. 🤝",
+            "Use o cheque especial apenas em emergências reais. 🚨",
+            "Programe lembretes para não atrasar pagamentos. 🔔",
+            "Compare taxas antes de fazer qualquer tipo de empréstimo. 🔎",
+            "Use débito automático apenas para contas fixas e controladas. 🔒",
+            "Sempre pesquise preços antes de comprar qualquer produto. 🛒",
+            "Aproveite cupões, promoções e programas de cashback. 🏷️",
+            "Reflita se você realmente precisa comprar aquilo. 🤔",
+            "Faça uma lista antes de ir às compras e siga-a. 🗒️",
+            "Evite comprar quando estiver com fome, pressa ou nervoso. 🧘‍♀️",
+            "Dê preferência ao pagamento à vista com desconto. 💸",
+            "Avalie o custo-benefício de tudo que comprar. 👍",
+            "Espere 24 horas antes de comprar algo caro por impulso. ⏳",
+            "Invista em roupas básicas, duráveis e que combinam entre si. 👚👖",
+            "Tente consertar itens antes de descartá-los. ♻️",
+            "Leia livros e veja vídeos sobre finanças pessoais. 📖",
+            "Converse com a família sobre dinheiro e planeamento. 👨‍👩‍👧‍👦",
+            "Ensine educação financeira às crianças desde cedo. 👧👦",
+            "Tenha um objetivo financeiro maior para se motivar. ✨",
+            "Não compare a sua vida com a dos outros, cada um tem o seu ritmo. 🚶‍♂️➡️",
+            "Celebre as suas conquistas financeiras sem exageros. 🎉",
+            "Busque alternativas de renda além do seu salário principal. 💡",
+            "Use as suas habilidades para gerar uma renda extra. 💻",
+            "Revise as suas metas financeiras a cada três meses. 🔄",
+            "Lembre-se: dinheiro bem cuidado traz liberdade e tranquilidade. 🕊️"
+        ];
 
         function openDrawer() {
             recommendationsDrawer.classList.remove('invisible', 'opacity-0');
@@ -341,33 +394,10 @@
             }
         });
 
-        generateTipButton.addEventListener('click', async () => {
+        generateTipButton.addEventListener('click', () => {
             openTipModal();
-            try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: "Gere uma dica financeira concisa ou uma breve mensagem motivacional sobre planeamento financeiro." }] });
-                const payload = { contents: chatHistory };
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-                const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    let text = result.candidates[0].content.parts[0].text;
-                    text = text.replace(/\*\*/g, '');
-                    tipContent.textContent = text;
-                } else {
-                    tipContent.textContent = "Não foi possível gerar a dica. Tente novamente.";
-                }
-            } catch (error) {
-                console.error("Erro ao chamar a API Gemini:", error);
-                tipContent.textContent = "Ocorreu um erro ao gerar a dica. Por favor, tente mais tarde.";
-            }
+            const randomIndex = Math.floor(Math.random() * tips.length);
+            tipContent.textContent = tips[randomIndex];
         });
 
         closeTipModalBtn.addEventListener('click', closeTipModal);
