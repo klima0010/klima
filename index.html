@@ -34,7 +34,6 @@
             justify-content: center;
             align-items: center;
             font-family: 'Inter', sans-serif;
-            /* Fundo gradiente original da página */
             background: linear-gradient(135deg, #1A1A2E 0%, #3B0066 30%, #6A006A 60%, #FF4500 100%);
             background-size: 400% 400%;
             animation: backgroundGradientAnimation 15s ease infinite;
@@ -94,6 +93,16 @@
         @keyframes recommendationsButtonWave {
             from { background-position: 0% 0%; }
             to { background-position: 100% 0%; }
+        }
+
+        .typing-text::after {
+            content: '|';
+            animation: blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: theme('colors.textLight'); }
         }
     </style>
 </head>
@@ -160,10 +169,16 @@
                 Minhas Recomendações
             </a>
 
+            <div class="w-full space-y-4 mt-10 text-center">
+                <h4 class="text-xl font-bold text-textLight">Versículo do Dia</h4>
+                <div id="dailyVersesWrapper"></div>
+                <script async defer src="https://dailyverses.net/get/verse.js?language=arc"></script>
+            </div>
+
         </div>
 
         <div class="text-center text-gray-500 text-sm mt-6">
-            Feito <span class="animated-emoji">🧡</span>
+            <span id="typingEffect"></span> <span class="animated-emoji">🧡</span>
         </div>
     </div>
 
@@ -222,6 +237,39 @@
                 closeDrawer();
             }
         });
+
+        const textElement = document.getElementById('typingEffect');
+        const textToType = "Hecho";
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeText() {
+            if (isDeleting) {
+                if (charIndex > 0) {
+                    charIndex--;
+                    textElement.textContent = textToType.substring(0, charIndex);
+                    setTimeout(typeText, 75);
+                } else {
+                    isDeleting = false;
+                    setTimeout(typeText, 500);
+                }
+            } else {
+                if (charIndex < textToType.length) {
+                    textElement.textContent += textToType.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeText, 150);
+                } else {
+                    textElement.classList.add('typing-text');
+                    setTimeout(() => {
+                        textElement.classList.remove('typing-text');
+                        isDeleting = true;
+                        setTimeout(typeText, 1000);
+                    }, 2000);
+                }
+            }
+        }
+
+        window.onload = typeText;
 
     </script>
 </body>
