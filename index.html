@@ -188,7 +188,7 @@
                 <br>• Cristão <span class="animated-emoji">✝️</span>
                 <br>• <a href="https://www.instagram.com/itubers/" target="_blank" rel="noopener noreferrer" class="underline text-primary hover:text-secondary">@ituber</a> <span class="animated-emoji">🧡</span>
                 <br>• Criando Conteúdos <span class="animated-emoji">✍🏽</span>
-                <br>• Posso te ajudar a fortalecer a fé em Deus <span class="animated-emoji">🙏🏽</span> e a planejar as suas finanças <span class="animated-emoji">💰</span> <span class="rotating-gear">⚙️</span>
+                <br>• Posso te ajudar a fortalecer a fé em Deus <span class="animated-emoji">🙏🏽</span> e a planear as suas finanças <span class="animated-emoji">💰</span> <span class="rotating-gear">⚙️</span>
             </p>
             <p class="text-gray-400 mt-4 text-center animated-text-color">Encaixando e movendo as engrenagens da vida</p>
         </div>
@@ -245,6 +245,18 @@
         </div>
     </div>
 
+    <div id="financialTipModal" class="fixed inset-0 bg-black bg-opacity-75 z-[51] flex items-center justify-center opacity-0 invisible transition-all duration-300 ease-in-out">
+        <div class="bg-cardBg p-6 rounded-lg shadow-xl w-11/12 max-w-md relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
+            <button id="closeTipModal" class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl font-light">
+                ×
+            </button>
+            <h3 class="text-xl font-bold text-textLight mb-4 text-center">Dica Financeira ✨</h3>
+            <div id="tipContent" class="text-gray-400 text-base text-center mb-4 p-2 rounded-md bg-gray-700 bg-opacity-30">
+                Aguarde, gerando sua dica...
+            </div>
+        </div>
+    </div>
+
     <div id="recommendationsDrawer" class="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center opacity-0 invisible transition-all duration-300 ease-in-out">
         <div class="bg-cardBg p-6 rounded-lg shadow-xl w-11/12 max-w-md relative transform scale-95 opacity-0 transition-all duration-300 ease-in-out">
             <button id="closeDrawer" class="absolute top-3 right-3 text-gray-400 hover:text-white text-3xl font-light">
@@ -264,7 +276,15 @@
                    style="background: linear-gradient(to right, #FF6200, #CCE618); background-size: 200% 100%; animation: buttonWave 8s linear infinite;">
                     Planilha de controle financeira
                 </a>
-            </div>
+
+                <button id="generateTipButton"
+                        class="block w-full text-white py-2 px-4 rounded-lg text-center font-semibold text-lg
+                               hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ease-in-out transform-gpu
+                               flex justify-center items-center"
+                        style="background: linear-gradient(to right, #0A66C2, #3B0066); background-size: 200% 100%; animation: recommendationsButtonWave 8s linear infinite;">
+                    Gerar dica financeira com IA
+                </button>
+                </div>
         </div>
     </div>
 
@@ -273,6 +293,11 @@
         const recommendationsDrawer = document.getElementById('recommendationsDrawer');
         const drawerContent = recommendationsDrawer.querySelector('div');
         const closeDrawerBtn = document.getElementById('closeDrawer');
+
+        const generateTipButton = document.getElementById('generateTipButton');
+        const financialTipModal = document.getElementById('financialTipModal');
+        const tipContent = document.getElementById('tipContent');
+        const closeTipModalBtn = document.getElementById('closeTipModal');
 
         function openDrawer() {
             recommendationsDrawer.classList.remove('invisible', 'opacity-0');
@@ -288,6 +313,21 @@
             drawerContent.classList.add('scale-95', 'opacity-0');
         }
 
+        function openTipModal() {
+            financialTipModal.classList.remove('invisible', 'opacity-0');
+            financialTipModal.classList.add('visible', 'opacity-100');
+            financialTipModal.querySelector('div').classList.remove('scale-95', 'opacity-0');
+            financialTipModal.querySelector('div').classList.add('scale-100', 'opacity-100');
+        }
+
+        function closeTipModal() {
+            financialTipModal.classList.remove('visible', 'opacity-100');
+            financialTipModal.classList.add('invisible', 'opacity-0');
+            financialTipModal.querySelector('div').classList.remove('scale-100', 'opacity-100');
+            financialTipModal.querySelector('div').classList.add('scale-95', 'opacity-0');
+            tipContent.textContent = 'Aguarde, gerando sua dica...';
+        }
+
         recommendationsButton.addEventListener('click', (event) => {
             event.preventDefault();
             openDrawer();
@@ -298,6 +338,43 @@
         recommendationsDrawer.addEventListener('click', (event) => {
             if (event.target === recommendationsDrawer) {
                 closeDrawer();
+            }
+        });
+
+        generateTipButton.addEventListener('click', async () => {
+            openTipModal();
+            try {
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: "Gere uma dica financeira concisa ou uma breve mensagem motivacional sobre planeamento financeiro." }] });
+                const payload = { contents: chatHistory };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    text = text.replace(/\*\*/g, '');
+                    tipContent.textContent = text;
+                } else {
+                    tipContent.textContent = "Não foi possível gerar a dica. Tente novamente.";
+                }
+            } catch (error) {
+                console.error("Erro ao chamar a API Gemini:", error);
+                tipContent.textContent = "Ocorreu um erro ao gerar a dica. Por favor, tente mais tarde.";
+            }
+        });
+
+        closeTipModalBtn.addEventListener('click', closeTipModal);
+
+        financialTipModal.addEventListener('click', (event) => {
+            if (event.target === financialTipModal) {
+                closeTipModal();
             }
         });
 
